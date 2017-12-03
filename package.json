@@ -1,0 +1,23 @@
+{
+  "name": "amortizejs",
+  "version": "1.0.0",
+  "description": "Loan calculation utility with multiple amortization methods.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/tsc",
+    "clean": "rm -rfd ./dist/*",
+    "start": "npm run-script clean && npm run-script build && node ./dist/calculator.js"
+  },
+  "keywords": [
+    "loan",
+    "amortize",
+    "amortization",
+    "mortgage"
+  ],
+  "author": "David Booth",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^2.6.2"
+  }
+}
