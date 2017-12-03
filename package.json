@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/tsc",
-    "clean": "rm -rfd ./dist/*",
-    "start": "npm run-script clean && npm run-script build && node ./dist/calculator.js"
+    "build:web": "npm run-script clean && npm run-script build && ./node_modules/.bin/browserify -e ./dist/node/calculator.js -o ./dist/web/bundle.js",
+    "clean": "rm -rfd ./dist/* && mkdir ./dist/node && mkdir ./dist/web",
+    "start": "npm run-script clean && npm run-script build && node ./dist/node/calculator.js"
   },
   "keywords": [
     "loan",
@@ -18,6 +19,7 @@
   "author": "David Booth",
   "license": "MIT",
   "devDependencies": {
+    "browserify": "^14.5.0",
     "typescript": "^2.6.2"
   }
 }

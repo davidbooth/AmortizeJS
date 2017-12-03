@@ -8,7 +8,7 @@ export abstract class Calculator{
      * Calculates an amortization schedule.
      * @param {calculatorConfig} config 
      */
-    static amortization(config:calculatorConfig){
+    static calculate(config:calculatorConfig){
 
         let method = undefined;
 
@@ -32,7 +32,7 @@ export abstract class Calculator{
      * Returns the amortization methods that are available.
      * @return {string[]} List of amortization methods.
      */
-    static availableMehods():string[]{
+    static availableMethods():string[]{
 
         return [
             'mortgage'
@@ -43,10 +43,14 @@ export abstract class Calculator{
 
 }
 
+//If module is used in browser we attach it to the window.
+if(typeof window !== 'undefined'){
+    (window as any).AmortizeJS = Calculator;
+}
 
-console.log(Calculator.availableMehods());
+console.log(Calculator.availableMethods());
 
-console.log(Calculator.amortization(
+console.log(Calculator.calculate(
     {
         method:   'mortgage', 
         apr:      3.5, 
