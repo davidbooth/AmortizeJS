@@ -38,14 +38,6 @@ exports.Calculator = Calculator;
 if (typeof window !== 'undefined') {
     window.AmortizeJS = Calculator;
 }
-console.log(Calculator.availableMethods());
-console.log(Calculator.calculate({
-    method: 'mortgage',
-    apr: 3.5,
-    balance: 280350,
-    loanTerm: 60,
-    startDate: new Date()
-}));
 
 },{"./methods/mortgage":2}],2:[function(require,module,exports){
 "use strict";
