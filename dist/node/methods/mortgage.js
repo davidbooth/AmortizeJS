@@ -47,7 +47,16 @@ var MortgageAmortization = /** @class */ (function () {
         var result = { interest: undefined, principal: undefined, remainingBalance: undefined };
         result.interest = balance * this.periodicInterest;
         result.principal = this.periodicPayment - result.interest;
-        result.remainingBalance = balance - result.principal;
+        if (balance < this.periodicPayment) {
+            //If balance is less then periodicPayment we manually set 
+            //remaining balance to 0 to minize rounding errors that could
+            //cause the remaining balance to be slightly larger than 0.00
+            result.remainingBalance = 0;
+        }
+        else {
+            //Otherwise calculate remaining balance as normal.
+            result.remainingBalance = balance - result.principal;
+        }
         return result;
     };
     /**

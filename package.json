@@ -1,6 +1,6 @@
 {
   "name": "amortizejs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Loan calculation and amortization schedule utility with support for multiple amortization methods.",
   "main": "./dist/node/calculator.js",
   "scripts": {
