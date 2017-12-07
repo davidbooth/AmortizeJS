@@ -1,5 +1,5 @@
 {
-  "name": "AmortizeJS",
+  "name": "amortizejs",
   "description": "Loan calculation and amortization schedule utility with support for multiple amortization methods.",
   "main": "./dist/web/calculator.js",
   "authors": [
@@ -11,7 +11,8 @@
     "amortize",
     "amortization",
     "mortgage",
-    "schedule"
+    "schedule",
+    "finance"
   ],
   "homepage": "https://github.com/davidbooth/AmortizeJS",
   "ignore": [
