@@ -43,11 +43,6 @@ AmortizeJS.calculate({
 
 ## Installation
 
-In a browser:
-```html
-<script src="amortize.js"></script>
-```
-
 Using Bower:
 ```html
 $ bower install amortizejs
@@ -59,6 +54,10 @@ Using npm:
 ```bash
 $ npm install amortizejs
 ```
+
+## Usage
+
+In Browser: `AmortizeJS` class is available on the window object.
 
 In Node.js
 ```js
