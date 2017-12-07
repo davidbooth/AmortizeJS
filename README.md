@@ -2,7 +2,6 @@
 
 [![Website][web-img]][web-url]
 [![Version][version-img]][npm-url]
-[![Bower][bower-img]][npm-url]
 [![npm][npm-img]][npm-url]
 [![license][license-img]]()
 
