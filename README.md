@@ -5,7 +5,7 @@
 [![npm][npm-img]][npm-url]
 [![license][license-img]]()
 
-Loan calculation and amortization schedule utility with support for multiple amortization methods.
+Loan calculation and amortization schedule utility with support for custom amortization methods, available for node and browser.
 
 ```js
 AmortizeJS.calculate({
@@ -23,8 +23,8 @@ AmortizeJS.calculate({
 3. [Quickstart](#quickstart)
 4. [API Docs](#api-docs)
    - [AmortizeJS](#amortizejs-1)
-   - [AmortizationMethod](#amortizationmethod)
    - [CalculatorConfig](#calculatorconfig)
+   - [AmortizationMethod](#amortizationmethod)
    - [Payment](#payment)
 5. [Formatting of results in examples](#formatting-of-results-in-examples)
 6. [Contributing](#contributing)
@@ -68,7 +68,7 @@ var AmortizeJS = require('amortizejs').Calculator;
 To calculate a mortgage amortization schedule including payment dates:
 
 ```js
-let mortgage = AmortizeJS.calculate({
+var mortgage = AmortizeJS.calculate({
     method:   'mortgage',
     apr:      3.5, 
     balance:  280350,    
@@ -99,6 +99,18 @@ AmortizeJS.availableMethods(); // ['mortgage']
 | `calculate(config)` | [calculatorConfig](#calculatorconfig) | [AmortizationMethod](#amortizationmethod) | Calculates amortization details and schedule. |
 | `availableMethods()` | none | string[] | Returns the amortization methods that are available. |
 
+### CalculatorConfig
+An object conforming to the CalculatorConfig Interface is required when calling `AmortizeJS.calculate(config)`, the following options are available:
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+|   method     | string \| function | A string identifying the amortization method to use, or a custom amortization function.
+|   balance    | number | The loan amount.
+|   loanTerm   | number | Loan term in month.
+|   apr        | number | The Anual Percentage Rate (ex: 3.5%)
+|   startDate | Date (Optional)  | Optional start date, will cause monthly payments to have dates attached to them.
+
+
 ### AmortizationMethod
 An object conforming to the AmortizationMethod Interface is returned when calling `AmortizeJS.calculate(config)`, the following attributes are available on it:
 
@@ -113,17 +125,6 @@ An object conforming to the AmortizationMethod Interface is returned when callin
 | totalInterest     |  number   | The total amount of interest spend over the term. |
 | startDate        |  Date (Optional)     | The start date of the loan. |
 | endDate          |  Date (Optional)     | The pay off date (Will only be calculated if startDate was given). |
-
-### CalculatorConfig
-An object conforming to the CalculatorConfig Interface is required when calling `AmortizeJS.calculate(config)`, the following options are available:
-
-| Attribute | Type | Description |
-| --- | --- | --- |
-|   method     | string | The amortization method to use. See Calculator.availableMethods()
-|   balance    | number | The loan amount.
-|   loanTerm   | number | Loan term in month.
-|   apr        | number | The Anual Percentage Rate (ex: 3.5%)
-|   startDate | Date (Optional)  | Optional start date, will cause monthly payments to have dates attached to them.
 
 
 ### Payment
@@ -143,8 +144,56 @@ Results are not truncated or formatted in any way, the results in the examples a
 
 
 ## Contributing
-TODO: Describe contribution of custom AmortizationMethods.
+It is easy to extend AmortizeJS with custom amortization methods, all you need to do is create a javascript class or function that can be initiated via the `new` operator. This constructor will be supplied the following arguments in order: 
 
+| Argument | Type | Description |
+| --- | --- | --- |
+|    balance          | number | The loan amount.
+|    periodicInterest | number | The interest payed per period.
+|    periods          | number | The total number of periods.
+|    startDate        | Date (Optional)   | The start date of the loan.
+
+The constructor should return an object that conforms to the [AmortizationMethod](#amortizationmethod) interface.
+
+### Using a custom method
+
+```js
+function customFunction(balance, periodicInterest, loanTerm, startDate){
+    //Your custom amortization algorithm here
+    return arguments;
+}
+
+var mortgage = Calculator.calculate({
+    method:   customFunction,
+    apr:      3.5, 
+    balance:  280350, 
+    loanTerm: 60,
+    startDate: new Date('December 24 2017')
+});
+
+console.log(mortgage); //{"0": 280350, "1": 0.00292, "2": 60, "3": "2017-12-24T05:00:00.000Z"}
+```
+
+### Using a custom class
+
+```js
+class CustomMethod{
+    constructor(balance, periodicInterest, loanTerm, startDate){
+        //Your custom amortization algorithm here
+        return arguments;
+    }
+}
+
+var mortgage = Calculator.calculate({
+    method:   CustomMethod,
+    apr:      3.5, 
+    balance:  280350, 
+    loanTerm: 60,
+    startDate: new Date('December 24 2017')
+});
+
+console.log(mortgage); //{"0": 280350, "1": 0.00292, "2": 60, "3": "2017-12-24T05:00:00.000Z"}
+```
 
 [npm-url]: https://www.npmjs.com/package/amortizejs
 [npm-img]: https://img.shields.io/npm/dt/amortizejs.svg
