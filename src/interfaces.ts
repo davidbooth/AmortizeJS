@@ -26,7 +26,7 @@ export interface AmortizationMethod{
 
 export interface calculatorConfig{
 
-    method:     string; //The amortization method to use. See Calculator.availableMethods()
+    method:     string | Function; //A string identifying the amortization method to use, or a custom amortization function. See Calculator.availableMethods()
     balance:    number; //The loan amount.
     loanTerm:   number; //Loan term in month.
     apr:        number; //The Anual Percentage Rate (ex: 3.5%)

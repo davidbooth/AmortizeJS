@@ -10,11 +10,17 @@ var Calculator = /** @class */ (function () {
      */
     Calculator.calculate = function (config) {
         var method = undefined;
-        switch (config.method) {
-            case 'mortgage':
-            default:
-                method = mortgage_1.MortgageAmortization;
-                break;
+        //Pick from integrated amortization methods.
+        if (typeof config.method === 'string') {
+            switch (config.method) {
+                case 'mortgage':
+                default:
+                    method = mortgage_1.MortgageAmortization;
+                    break;
+            }
+        }
+        else if (typeof config.method === 'function') {
+            method = config.method;
         }
         //Turn APR into periodic interest
         var periodicInterest = (config.apr / 100) / 12;

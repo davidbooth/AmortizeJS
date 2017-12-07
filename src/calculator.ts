@@ -12,11 +12,20 @@ export abstract class Calculator{
 
         let method = undefined;
 
-        switch (config.method) {
-            case 'mortgage':
-            default:
-                method = MortgageAmortization;
-                break;
+        //Pick from integrated amortization methods.
+        if(typeof config.method === 'string'){
+
+            switch (config.method) {
+                case 'mortgage':
+                default:
+                    method = MortgageAmortization;
+                    break;
+            }
+
+        }
+        //Use custom method
+        else if(typeof config.method === 'function'){
+            method = config.method;
         }
 
         //Turn APR into periodic interest
@@ -47,3 +56,4 @@ export abstract class Calculator{
 if(typeof window !== 'undefined'){
     (window as any).AmortizeJS = Calculator;
 }
+
