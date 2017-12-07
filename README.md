@@ -143,7 +143,16 @@ Results are not truncated or formatted in any way, the results in the examples a
 
 
 ## Contributing
-TODO: Describe contribution of custom AmortizationMethods.
+It is easy to extend AmortizeJS with custom amortization methods, all you need to do is create a javascript class or function that can be initiated via the `new` operator. This constructor will be supplied the following arguments in order: 
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|    balance          | number | The loan amount.
+|    periodicInterest | number | The interest payed per period.
+|    periods          | number | The total number of periods.
+|    startDate        | Date (Optional)   | The start date of the loan.
+
+The constructor should return an object that conforms to the [AmortizationMethod](#amortizationmethod) interface.
 
 
 [npm-url]: https://www.npmjs.com/package/amortizejs
