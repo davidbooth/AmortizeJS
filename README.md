@@ -51,7 +51,7 @@ In a browser:
 
 Using Bower:
 ```html
-$ bower install ArmotizeJS
+$ bower install amortizejs
 
 <script src="./bower_components/AmortizeJS/dist/web/bundle.js"></script>
 ```
