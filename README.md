@@ -1,5 +1,3 @@
-<img height="150" alt="logo" src="http://amortize.me/img/AmortizeLogo.png">
-
 # AmortizeJS
 
 [![Website][web-img]][web-url]
