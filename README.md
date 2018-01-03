@@ -1,3 +1,5 @@
+<img height="150" alt="logo" src="http://amortize.me/img/AmortizeLogo.png">
+
 # AmortizeJS
 
 [![Website][web-img]][web-url]
@@ -16,6 +18,13 @@ AmortizeJS.calculate({
     startDate: new Date('December 24 2017')
 });
 ```
+
+
+## Demo
+For a demo visit [amortize.me](http://amortize.me)
+
+<img src="http://amortize.me/preview.gif">
+
 
 ## Table of Contents
 1. [Features](#features)
